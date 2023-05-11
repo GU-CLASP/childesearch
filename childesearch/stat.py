@@ -10,10 +10,12 @@ df = pd.read_csv(
 # print("----------------")
 # .drop(["m", "fn"], axis=1)
 print(
-    df[["m3", "why_pw_c", "why_pw_a", "because_pw_c", "because_pw_a"]]
+    df[df["fn"].str.contains(sys.argv[1])]
+    .drop(
+        ["m", "fn"], axis=1
+    )  # [["m3", "why_pw_c", "why_pw_a", "because_pw_c", "because_pw_a"]]
     .groupby("m3")
-    .mean()
-    .multiply(1000)
+    .sum()
     .to_csv(sep="\t")
 )
 print()

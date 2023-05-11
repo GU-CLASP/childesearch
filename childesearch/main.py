@@ -128,12 +128,8 @@ print(
             "w_a",
             "why_c",
             "why_a",
-            "why_pw_c",
-            "why_pw_a",
             "because_c",
             "because_a",
-            "because_pw_c",
-            "because_pw_a",
         ]
     )
 )
@@ -142,7 +138,7 @@ for row in dt:
     if (row["words_chi"] != 0) and (row["words_all"] - row["words_chi"] != 0):
         if row["months"]:
             print(
-                "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}".format(
+                "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}".format(
                     row["filename"],
                     row["months"],
                     (row["months"] // 3) * 3,
@@ -150,13 +146,7 @@ for row in dt:
                     (row["words_all"] - row["words_chi"]),
                     row["words_why_chi"],
                     (row["words_why_all"] - row["words_why_chi"]),
-                    row["words_why_chi"] / row["words_chi"],
-                    (row["words_why_all"] - row["words_why_chi"])
-                    / (row["words_all"] - row["words_chi"]),
                     row["words_because_chi"],
                     (row["words_because_all"] - row["words_because_chi"]),
-                    row["words_because_chi"] / row["words_chi"],
-                    (row["words_because_all"] - row["words_because_chi"])
-                    / (row["words_all"] - row["words_chi"]),
                 )
             )
