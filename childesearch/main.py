@@ -1,12 +1,11 @@
 import pylangacq
+import sys
 
 # reader = pylangacq.Reader.from_files(
 #     ["./data/030001.cha", "./data/030001.cha"], parallel=False
 # )
 
-reader = pylangacq.Reader.from_zip(
-    "https://childes.talkbank.org/data/Eng-UK/Wells.zip", parallel=False
-)
+reader = pylangacq.Reader.from_zip(sys.argv[1], parallel=False)
 
 # print("-----")
 # print("Total files:", reader.n_files())
@@ -119,20 +118,43 @@ for ix, x in enumerate(reader.words(by_files=True)):
             count += 1
     dt[ix]["words_because_all"] = count
 
+print(
+    "\t".join(
+        [
+            "fn",
+            "m",
+            "m3",
+            "w_c",
+            "w_a",
+            "why_c",
+            "why_a",
+            "why_pw_c",
+            "why_pw_a",
+            "because_c",
+            "because_a",
+            "because_pw_c",
+            "because_pw_a",
+        ]
+    )
+)
+
 for row in dt:
     if (row["words_chi"] != 0) and (row["words_all"] - row["words_chi"] != 0):
         if row["months"]:
             print(
-                "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}".format(
+                "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}".format(
                     row["filename"],
                     row["months"],
                     (row["months"] // 3) * 3,
                     row["words_chi"],
+                    (row["words_all"] - row["words_chi"]),
                     row["words_why_chi"],
+                    (row["words_why_all"] - row["words_why_chi"]),
                     row["words_why_chi"] / row["words_chi"],
                     (row["words_why_all"] - row["words_why_chi"])
                     / (row["words_all"] - row["words_chi"]),
                     row["words_because_chi"],
+                    (row["words_because_all"] - row["words_because_chi"]),
                     row["words_because_chi"] / row["words_chi"],
                     (row["words_because_all"] - row["words_because_chi"])
                     / (row["words_all"] - row["words_chi"]),
