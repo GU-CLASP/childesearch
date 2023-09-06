@@ -1,0 +1,12 @@
+1  . filename
+2  . months
+3  . months - 3-months span
+4  . words by child
+5  . "why" by child
+6  . "why" by child per word
+7  . "why" by adult per word
+8  . "because" by child
+9  . "because" by child per word
+10 . "because" by adult per word
+
+in *_stat.txt -- per 1000 words
